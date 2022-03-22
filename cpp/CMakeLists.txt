@@ -1,0 +1,10 @@
+add_subdirectory(gpuencode)
+
+if(WITH_EXAMPLES)
+    set(examples example_abgr example_concurrent)
+    foreach(e ${examples})
+        add_executable(${e} "${e}.cpp")
+        target_include_directories(${e} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+        target_link_libraries(${e} PUBLIC gpuencode)
+    endforeach()
+endif()
